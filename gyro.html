@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <title>Motion Sensorsサンプル</title>
+    <script>
+      var ws = new WebSocket("ws://"+location.host+"/websocket");
+      ws.onopen = function(){
+        ws.send("hello");
+      };
+      ws.onmessage = function(e){
+        alert(e.data);
+      };
+
+      window.addEventListener("devicemotion", function(event1){
+        var x = event1.accelerationIncludingGravity.x;
+        var y = event1.accelerationIncludingGravity.y;
+        var z = event1.accelerationIncludingGravity.z;
+         
+        var result1 = document.getElementById("result1");
+        result1.innerHTML = 
+          "X："+ Math.round(x * 10) / 10 +"<br>" +
+          "Y："+ Math.round(y * 10) / 10 +"<br>" + 
+          "Z："+ Math.round(z * 10) / 10;
+      }, true);
+       
+      window.addEventListener('deviceorientation', function(event2) {
+            var alpha = event2.alpha;
+            var beta = event2.beta;
+        var gamma = event2.gamma;
+         
+        result2.innerHTML = 
+          "alpha："+ Math.round(alpha * 10) / 10 +"<br>" +
+          "beta："+ Math.round(beta * 10) / 10 +"<br>" + 
+          "gamma："+ Math.round(gamma * 10) / 10;
+          ws.send(beta);
+        }, true);
+    </script>
+  </head>
+  <body>
+    <div id="result1"></div>
+    <div id="result2"></div>
+  </body>
+</html>
