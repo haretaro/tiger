@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>WEB SOCKET WOW!</title>
   <script>
-    var ws = new WebSocket('ws://localhost:8888/socket');
+    var ws = new WebSocket('ws://' + location.host + '/socket');
     document.onkeydown = function(e){
       console.log(e.keyCode);
       ws.send(e.keyCode);
