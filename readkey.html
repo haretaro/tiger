@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>WEB SOCKET WOW!</title>
+  <script>
+    var ws = new WebSocket('ws://localhost:8888/socket');
+    document.onkeydown = function(e){
+      console.log(e.keyCode);
+      ws.send(e.keyCode);
+    };
+  </script>
+</head>
+<body>
+  varvar
+</body>
+</html>
